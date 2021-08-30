@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace pascal_sTriangle
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] stringArray = Console.ReadLine().Split(' ');
+            int n = Convert.ToInt32(stringArray.First());
+            int m = Convert.ToInt32(stringArray.Last());
+
+            int[,] numericArray = new int[n, m];
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    if (i == 0 || j == 0)
+                        numericArray[i, j] = 1;
+                    else
+                        numericArray[i, j] = numericArray[i - 1, j] + numericArray[i, j - 1];
+                }
+            }
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    Console.Write(numericArray[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+
+            Console.ReadKey();
+        }
+    }
+}
